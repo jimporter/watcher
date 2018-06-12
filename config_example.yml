@@ -1,0 +1,7 @@
+sites:
+  - url: http://www.example.com
+    css: .my > .cool > . selector
+    interval: 5m
+  - url: http://www.example.org
+    xpath: /my/cool/xpath
+    interval: 30s

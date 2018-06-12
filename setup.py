@@ -47,7 +47,7 @@ setup(
 
     packages=find_packages(exclude=['test', 'test.*']),
 
-    install_requires=(['cssselect', 'lxml']),
+    install_requires=(['cssselect', 'lxml', 'pyyaml']),
     extras_require={
         'dev': ['flake8 >= 3.0', 'pypandoc'],
         'test': ['flake8 >= 3.0'],
