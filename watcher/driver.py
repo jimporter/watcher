@@ -3,9 +3,14 @@ import logging
 import yaml
 
 from .jobs import JobQueue
+from .notifiers import Notifiers
 from .parser import job
 from .sites import Site
 from .version import version
+
+def make_site(notifiers, kind=None, **kwargs):
+    notifier = notifiers.default if kind is None else notifiers[kind]
+    return Site(notifier=notifier, **kwargs)
 
 
 def main():
@@ -21,9 +26,12 @@ def main():
         level=logging.INFO if args.verbose else logging.WARNING
     )
 
+    notifiers = Notifiers()
     with open('config.yml') as f:
         data = yaml.safe_load(f)
-        sites = [Site(**i) for i in data['sites']]
+        for k, v in data['notifiers'].items():
+            notifiers.add(k, **v)
+        sites = [make_site(notifiers, **i) for i in data['sites']]
 
     jobs = JobQueue()
     for i in sites:

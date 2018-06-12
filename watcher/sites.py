@@ -13,10 +13,11 @@ def parse_interval(t):
 
 
 class Site:
-    def __init__(self, url, css=None, xpath=None, interval=600.0):
+    def __init__(self, url, notifier, css=None, xpath=None, interval=600.0):
         if (css is None) == (xpath is None):
             raise TypeError('exactly one of css or xpath must be specified')
         self.url = url
+        self.notifier = notifier
         self.css = css
         self.xpath = xpath
         self.interval = parse_interval(interval)

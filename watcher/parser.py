@@ -71,6 +71,6 @@ def job(site, last=None):
     curr = match(doc, *site.selector)
     if last is not None:
         eq = compare(last, curr)
-        if not eq:
-            print('New stuff: {}'.format(eq.added))
+        if not eq or True:
+            site.notifier.notify(eq)
     return (curr,)
