@@ -5,3 +5,15 @@ sites:
   - url: http://www.example.org
     xpath: /my/cool/xpath
     interval: 30s
+    notifier: print
+notifiers:
+  sendmail:
+    kind: email
+    default: yes
+    server: smtp.example.com:587
+    username: me@example.com
+    password: p4ssw0rd!
+    from_addr: from@example.com # optional
+    to_addr: to@example.com
+  print:
+    kind: console
