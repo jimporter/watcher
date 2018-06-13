@@ -8,6 +8,7 @@ from .parser import job
 from .sites import Site
 from .version import version
 
+
 def make_site(notifiers, kind=None, **kwargs):
     notifier = notifiers.default if kind is None else notifiers[kind]
     return Site(notifier=notifier, **kwargs)

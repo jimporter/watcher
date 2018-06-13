@@ -1,4 +1,5 @@
 import smtplib
+from email.mime import MimeText
 
 
 class Notifiers:
@@ -44,8 +45,10 @@ class EmailNotifier:
         server.starttls()
         server.login(self.username, self.password)
 
-        msg = 'New stuff: {}'.format(eq.added)
-        server.sendmail(self.from_addr, self.to_addr, msg)
+        msg = MimeText('New stuff: {}'.format(eq.added))
+        msg['From'] = self.from_addr
+        msg['To'] = self.to_addr
+        server.send_message(msg)
         server.quit()
 
 
