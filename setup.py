@@ -17,7 +17,7 @@ with open(os.path.join(root_dir, 'README.md'), 'r') as f:
 
 try:
     import pypandoc
-    long_desc = pypandoc.convert(long_desc, 'rst', format='md')
+    long_desc = pypandoc.convert_text(long_desc, 'rst', format='md')
 except ImportError:
     pass
 
@@ -49,7 +49,7 @@ setup(
 
     install_requires=(['cssselect', 'lxml', 'pyyaml']),
     extras_require={
-        'dev': ['flake8 >= 3.0', 'pypandoc'],
+        'dev': ['flake8 >= 3.0', 'pypandoc >= 1.4'],
         'test': ['flake8 >= 3.0'],
     },
 
